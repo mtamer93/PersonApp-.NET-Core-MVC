@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model PersonDTO
+@{
+    ViewData["Title"] = "Kişi Detayları";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4>Id: @Model.Id</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Ad:</dt>
+        <dd class="col-sm-10">@Model.FirstName</dd>
+
+        <dt class="col-sm-2">Soyad:</dt>
+        <dd class="col-sm-10">@Model.LastName</dd>
+
+        <dt class="col-sm-2">Doğum Tarihi:</dt>
+        <dd class="col-sm-10">@Model.DateOfBirth.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">Email:</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+
+        <dt class="col-sm-2">Oluşturma Tarihi:</dt>
+        <dd class="col-sm-10">@Model.CreatedDate.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">Güncelleme Tarihi:</dt>
+        <dd class="col-sm-10">@((Model.UpdatedDate.HasValue ? Model.UpdatedDate.Value.ToShortDateString() : "-"))</dd>
+
+        <dt class="col-sm-2">Durum:</dt>
+        <dd class="col-sm-10">@Model.Status</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Düzenle</a>
+    <a asp-action="Index" class="btn btn-secondary">Geri</a>
+</div>

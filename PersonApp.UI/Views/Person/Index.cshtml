@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<PersonDTO>
+@{
+    ViewData["Title"] = "Kişiler";
+}
+
+<h1>Kişiler</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Yeni Kişi Ekle</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Doğum Tarihi</th>
+            <th>Email</th>
+            <th>Oluşturma Tarihi</th>
+            <th>Güncelleme Tarihi</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person.Id</td>
+                <td>@person.FirstName</td>
+                <td>@person.LastName</td>
+                <td>@person.DateOfBirth.ToShortDateString()</td>
+                <td>@person.Email</td>
+                <td>@person.CreatedDate.ToShortDateString()</td>
+                <td>@(person.UpdatedDate.HasValue ? person.UpdatedDate.Value.ToShortDateString() : "-")</td>
+                <td>@person.Status</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@person.Id" class="btn btn-info">Detaylar</a>
+                    <a asp-action="Edit" asp-route-id="@person.Id" class="btn btn-warning">Düzenle</a>
+                    <a asp-action="Delete" asp-route-id="@person.Id" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
